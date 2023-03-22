@@ -1,0 +1,39 @@
+* {
+  background-color: lightblue
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.App {
+  background-color: pink;
+}
+
+.tester {
+  color: green;
+}
+
+.recipe-boxes {
+  margin-top: 50px;
+  padding-top: 20px;
+  width: 320px;
+  height: 320px;
+  background-color: lightgray;
+  border: 4px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-render {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px
+}
+
+image {
+  width: 300px;
+}
