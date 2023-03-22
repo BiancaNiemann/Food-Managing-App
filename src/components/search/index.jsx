@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react"
 
 
 export default function Search(props) {
 
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState("")
 
-    const { dataFromSearch } = props
+    const { dataFromSearch, setSucsessApi, sucsessApi} = props
+    
 
     function handleInputValue(e) {
         const { value } = e.target
@@ -17,9 +18,17 @@ export default function Search(props) {
         dataFromSearch(inputValue)
     }
 
+    useEffect(() => {
+        if(sucsessApi){
+            setInputValue("")
+            setSucsessApi(false)
+        }
+    },[sucsessApi])
+    
+
     return (
         <form onSubmit={handleSubmit}>
-            <input name="search" onChange={handleInputValue} valaue={inputValue} placeholder="Search recipes" id="search" />
+            <input name="search" onChange={handleInputValue} value={inputValue} placeholder="Search recipes" id="search" />
             <button type="submit">Search</button>
         </form>
     )

@@ -15,7 +15,7 @@ html {
   color: green;
 }
 
-.recipe-boxes {
+.recipe-boxes  {
   margin-top: 50px;
   padding-top: 20px;
   width: 320px;
@@ -27,7 +27,7 @@ html {
   align-items: center;
 }
 
-.recipe-render {
+.recipe-render, .favorite-render {
   width: 100%;
   display: flex;
   flex-wrap: wrap;

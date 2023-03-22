@@ -1,7 +1,7 @@
 import React from "react"
 
-export default function RecipeItem(props) {
-    const { id, image, title, addToFavorites } = props
+export default function FavoriteItem(props) {
+    const { id, image, title, removeFromFavorites } = props
 
     return (
         <div key={id} className="recipe-boxes">
@@ -9,7 +9,7 @@ export default function RecipeItem(props) {
                 <img src={image} alt="image of recipe"></img>
             </div>
             <p>{title}</p>
-            <button type="button" onClick={addToFavorites}>Add to Favorites</button>
+            <button type="button" onClick={removeFromFavorites} >Remove From Favorites</button>
         </div>
     )
 }
