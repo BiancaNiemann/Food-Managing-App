@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { ThemeContext } from "../../App"
 
 
 export default function Search(props) {
@@ -6,6 +7,8 @@ export default function Search(props) {
     const [inputValue, setInputValue] = useState("")
 
     const { dataFromSearch, setSucsessApi, sucsessApi} = props
+
+    const {theme} = useContext(ThemeContext)
     
 
     function handleInputValue(e) {
@@ -29,7 +32,12 @@ export default function Search(props) {
     return (
         <form onSubmit={handleSubmit}>
             <input name="search" onChange={handleInputValue} value={inputValue} placeholder="Search recipes" id="search" />
-            <button type="submit">Search</button>
+            <button 
+                type="submit"
+                style={theme ? {backgroundColor : "#12343b"} : {}} 
+            >
+                Search
+            </button>
         </form>
     )
 }

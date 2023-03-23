@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react"
+import React, { useState, useEffect, useReducer, useContext } from "react"
 import FavoriteItem from "../../components/favorite-item/index"
 import RecipeItem from "../../components/recipe-item"
 import Search from "../../components/search"
+import data from "../../data"
+import { ThemeContext } from "../../App"
 
 function reducer(state, action) {
     switch (action.type) {
@@ -26,22 +28,26 @@ export default function HomePage() {
     const [favorites, setFavorites] = useState([])
     const [sucsessApi, setSucsessApi] = useState(false)
     const [filteredState, dispatch] = useReducer(reducer, initialState)
+    const {theme} = useContext(ThemeContext)
 
     function dataFromSearch(getData) {
         setLoadingState(true)
 
-        async function getRecipes() {
-            const apiResponse = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=fe43c23afdb64cf1a8385295bd4bd851&query=${getData}")
-            const result = await apiResponse.json()
-            const { results } = result
+        /*async function getRecipes() {
+            const apiResponse = 
+                await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=fe43c23afdb64cf1a8385295bd4bd851&query=${getData}")
+                const result = await apiResponse.json()
+                const { results } = result*/
+
+            let results = data // delete this line
 
             if (results && results.length > 0) {
                 setLoadingState(false)
                 setRecipes(results)
                 setSucsessApi(true)
-            }
+            //}
         }
-        getRecipes()
+        //getRecipes()
     }
 
     function addToFavorites(getItem) {
@@ -74,18 +80,22 @@ export default function HomePage() {
 
     return (
         <div>
+            
             <Search
                 dataFromSearch={dataFromSearch}
                 setSucsessApi={setSucsessApi}
                 sucsessApi={sucsessApi}
             />
             <div>
-                <h1>Favorites</h1>
+                <h1 style={theme ? {color : "#12343b"} : {}} >Favorites</h1>
                 <div>
                     <input
                         name="searchFavorites"
                         placeholder="Search Favorites"
-                        onChange={(e) => dispatch({ type: "filterFavorites", value: e.target.value })}
+                        onChange={(e) => 
+                            dispatch({ 
+                                type: "filterFavorites", 
+                                value: e.target.value })}
                         value={filteredState.filteredValue} />
                 </div>
                 <div className="favorite-render">
@@ -100,8 +110,10 @@ export default function HomePage() {
                     }
                 </div>
             </div>
-            {loadingState && (<h3>Loading Recipes, please wait</h3>)}
-            <h1>Your Recipe search selection</h1>
+            {loadingState && 
+                (<h3 style={theme ? {color : "#12343b"} : {}} >Loading Recipes, please wait</h3>
+            )}
+            <h1 style={theme ? {color : "#12343b"} : {}} >Your Recipe search selection</h1>
             <div className="recipe-render">
                 {recipes && recipes.length > 0
                     ? recipes.map(item => <RecipeItem
