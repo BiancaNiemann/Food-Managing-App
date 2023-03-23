@@ -2,11 +2,11 @@ import React, { createContext, useState } from "react"
 import HomePage from "./pages/homepage"
 import ThemeButton from "./components/theme-button"
 
-export const ThemeContext= createContext(null)
+export const ThemeContext = createContext(null)
 
 function App() {
 
-  const [theme, setTheme ] = useState(false)
+  const [theme, setTheme] = useState(false)
 
   return (
     <ThemeContext.Provider value={{
@@ -14,9 +14,9 @@ function App() {
       setTheme
     }
     }>
-      <div 
-        className="App" 
-        style={theme ? {backgroundColor: "#feb300"} : {}}
+      <div
+        className="App"
+        style={theme ? { backgroundColor: "#feb300" } : {}}
       >
         <ThemeButton />
         <HomePage />
